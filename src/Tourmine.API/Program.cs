@@ -1,30 +1,21 @@
-using Microsoft.AspNetCore.Builder;
-using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Adiciona os serviços necessários para Swagger
+builder.Services.AddControllers(); // Adiciona o controller
+builder.Services.AddEndpointsApiExplorer(); // Adiciona o endpoint no Swagger
+
+// Add Mediator DI
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger(); // Habilita o Swagger
+app.UseSwaggerUI(c =>
 {
-    app.MapOpenApi();
-
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/openapi/v1.json", "OpenAPI v1");
-    });
-
-    app.UseReDoc(options =>
-    {
-        options.SpecUrl("/openapi/v1.json");
-    });
-
-    app.MapScalarApiReference();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+    c.RoutePrefix = "swagger";
+});
 
 app.Run();
