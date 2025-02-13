@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Tourmine.Application.Responses.Auth;
+using Tourmine.Application.Services.Interfaces;
 
 namespace Tourmine.Application.Command.Auth.Register
 {
