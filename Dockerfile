@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
 # Copie o arquivo de solução
-COPY Tourmine.Tournament.Service.sln ./
+COPY Tourmine.api.sln ./
 
 # Copie todos os arquivos .csproj dos projetos
 COPY src/Tourmine.API/Tourmine.API.csproj ./src/Tourmine.API/
