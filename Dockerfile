@@ -4,10 +4,10 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 # Defina o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-# Copie o arquivo de solução
+# Copie o arquivo de solução para o diretório de trabalho
 COPY Tourmine.api.sln ./
 
-# Copie todos os arquivos .csproj dos projetos
+# Copie todos os arquivos .csproj dos projetos para seus respectivos diretórios
 COPY src/Tourmine.API/Tourmine.API.csproj ./src/Tourmine.API/
 COPY src/Tourmine.Application/Tourmine.Application.csproj ./src/Tourmine.Application/
 COPY src/Tourmine.Infrastructure/Tourmine.Infrastructure.csproj ./src/Tourmine.Infrastructure/
@@ -15,7 +15,7 @@ COPY src/Tourmine.Infrastructure/Tourmine.Infrastructure.csproj ./src/Tourmine.I
 # Restaure as dependências
 RUN dotnet restore
 
-# Copie o restante do código do projeto
+# Copie o restante do código do projeto para o contêiner
 COPY src ./src
 
 # Compile o projeto
