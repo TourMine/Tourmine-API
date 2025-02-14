@@ -5,6 +5,10 @@ namespace Tourmine.Application.Requests.Auth
     public class RegisterUserRequest
     {
         [Required]
+        public string Name { get; set; }
+
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -12,11 +16,10 @@ namespace Tourmine.Application.Requests.Auth
         public string Password { get; set; }
 
         [Required]
-        [EnumDataType(typeof(EUserRole))]
-        public EUserRole UserRole { get; set; }
+        public int UserType { get; set; }
     }
 
-    public enum EUserRole
+    public enum EUserType
     {
         Organizer = 1,
         Player = 2

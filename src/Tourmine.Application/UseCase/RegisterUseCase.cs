@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Tourmine.Application.Command.Auth.Register;
+using Tourmine.Application.Command.Users.Register;
 using Tourmine.Application.Requests.Auth;
-using Tourmine.Application.Responses.Auth;
+using Tourmine.Application.Shared;
 using Tourmine.Application.UseCase.Interfaces;
 
 namespace Tourmine.Application.UseCase
@@ -12,16 +12,22 @@ namespace Tourmine.Application.UseCase
         {
         }
 
-        public async Task<RegisterUserResponse> Execute(RegisterUserRequest request)
+        public async Task<bool> Execute(RegisterUserRequest request)
         {
-            //var user = await _mediator.Send(new GetUserByEmailQuery()); // TODO: Validar se o usuário existe no banco
+            try
+            {
+                var validateEnum = ValidateEnum.ValidateUserType(request.UserType);
 
-            //if (user == null)
-            //    return null;
+                if(!validateEnum)
+                    throw new Exception("Invalid user type");
 
-
-
-            return await _mediator.Send(new RegisterUserCommand(request));
+                var result = await mediator.Send(new RegisterUserCommand(request));
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

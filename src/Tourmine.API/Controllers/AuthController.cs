@@ -14,5 +14,20 @@ namespace Tourmine.API.Controllers
             var result = await useCase.Execute(request);
             return Ok(result);
         }
+
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request, [FromServices] ILoginUseCase useCase)
+        {
+            try
+            {
+                var result = await useCase.Execute(request);
+                return Ok(result);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized("Credentials are invalid");
+            }
+        }
     }
 }

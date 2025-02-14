@@ -1,10 +1,9 @@
 ﻿using MediatR;
 using Tourmine.Application.Requests.Auth;
-using Tourmine.Application.Responses.Auth;
 
-namespace Tourmine.Application.Command.Auth.Register
+namespace Tourmine.Application.Command.Users.Register
 {
-    public class RegisterUserCommand : IRequest<RegisterUserResponse>
+    public class RegisterUserCommand : IRequest<bool>
     {
         public RegisterUserRequest Request { get; set; }
 
