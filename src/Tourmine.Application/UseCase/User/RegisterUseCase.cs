@@ -5,7 +5,7 @@ using Tourmine.Application.Command.Users.Register;
 using Tourmine.Application.Requests.Auth;
 using Tourmine.Application.Requests.Email;
 using Tourmine.Application.Shared;
-using Tourmine.Application.UseCase.Interfaces;
+using Tourmine.Application.UseCase.Interfaces.Users;
 
 namespace Tourmine.Application.UseCase.User
 {

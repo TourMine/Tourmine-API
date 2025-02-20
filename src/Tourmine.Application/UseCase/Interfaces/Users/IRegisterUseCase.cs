@@ -1,6 +1,6 @@
 ﻿using Tourmine.Application.Requests.Auth;
 
-namespace Tourmine.Application.UseCase.Interfaces
+namespace Tourmine.Application.UseCase.Interfaces.Users
 {
     public interface IRegisterUseCase
     {
