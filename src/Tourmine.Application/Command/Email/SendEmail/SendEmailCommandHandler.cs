@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Configuration;
 using Refit;
 using Tourmine.Application.ExternalServices.Email;
 using Tourmine.Infrastructure;
@@ -7,12 +8,17 @@ namespace Tourmine.Application.Command.Email.SendEmail
 {
     public class SendEmailCommandHandler : IRequestHandler<SendEmailCommand, HttpResponseMessage>
     {
+        private readonly IConfiguration _configuration;
+        public SendEmailCommandHandler(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public async Task<HttpResponseMessage> Handle(SendEmailCommand request, CancellationToken cancellationToken)
         {
-            // inserir uri padrão para appsettings
-            var client = RestService.For<IEmailService>("https://api.mailersend.com/v1", new RefitSettings
+            var client = RestService.For<IEmailService>( _configuration["Email:BasePath"]!, new RefitSettings
             {
-                AuthorizationHeaderValueGetter = (msg, token) => Task.FromResult($"Bearer {Settings.EmailSecretKey}")
+                AuthorizationHeaderValueGetter = (msg, token) => Task.FromResult($"Bearer {_configuration["Email:ApiKey"]}")
             });
 
             try
