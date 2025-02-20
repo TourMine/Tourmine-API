@@ -3,7 +3,7 @@ using Tourmine.Application.Command.Users.Login.ValidatePassword;
 using Tourmine.Application.Queries.Users.GetUserByEmail;
 using Tourmine.Application.Requests.Auth;
 using Tourmine.Application.Responses.Auth;
-using Tourmine.Application.UseCase.Interfaces;
+using Tourmine.Application.UseCase.Interfaces.Auth;
 using Tourmine.Infrastructure.Interfaces;
 
 namespace Tourmine.Application.UseCase.Auth
