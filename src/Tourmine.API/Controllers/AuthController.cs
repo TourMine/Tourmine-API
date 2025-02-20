@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tourmine.Application.Requests.Auth;
-using Tourmine.Application.UseCase.Interfaces;
+using Tourmine.Application.UseCase.Interfaces.Auth;
+using Tourmine.Application.UseCase.Interfaces.Users;
 
 namespace Tourmine.API.Controllers
 {

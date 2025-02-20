@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Tourmine.Application.UseCase;
 using Tourmine.Application.UseCase.Auth;
-using Tourmine.Application.UseCase.Interfaces;
+using Tourmine.Application.UseCase.Interfaces.Auth;
+using Tourmine.Application.UseCase.Interfaces.Users;
+using Tourmine.Application.UseCase.User;
 using Tourmine.Infrastructure;
 using Tourmine.Infrastructure.Authentication;
 using Tourmine.Infrastructure.Interfaces;
@@ -55,6 +56,7 @@ builder.Services.AddEndpointsApiExplorer(); // Adiciona o endpoint no Swagger
 // UseCase
 builder.Services.AddScoped<IRegisterUseCase, RegisterUseCase>();
 builder.Services.AddScoped<ILoginUseCase, LoginUseCase>();
+builder.Services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
 
 // Services
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
