@@ -1,7 +1,7 @@
 ﻿using Tourmine.Application.Requests.Auth;
 using Tourmine.Application.Responses.Auth;
 
-namespace Tourmine.Application.UseCase.Interfaces
+namespace Tourmine.Application.UseCase.Interfaces.Auth
 {
     public interface ILoginUseCase
     {
