@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Refit;
 using System.Text;
+using Tourmine.Application.ExternalServices.Tournament;
 using Tourmine.Application.UseCase.Auth;
 using Tourmine.Application.UseCase.Interfaces.Auth;
 using Tourmine.Application.UseCase.Interfaces.Users;
@@ -60,6 +62,9 @@ builder.Services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
 
 // Services
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+
+builder.Services.AddRefitClient<ITournamentService>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7051"));
 
 // Add Mediator DI
 builder.Services.AddMediatR(cfg =>
