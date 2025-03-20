@@ -25,5 +25,11 @@ namespace Tourmine.Application.ExternalServices.Subscription
         Task<HttpResponseMessage> GetAll(
             Guid TournamentId,
             [Query] GetAllSubscriptionByTournamentIdRequest request);
+
+        [Delete("/subscription/v1/cancel-subscription/{UserId}/{TournamentId}")]
+        Task<HttpResponseMessage> CancelSubscription(
+            Guid UserId,
+            Guid TournamentId
+            );
     }
 }
